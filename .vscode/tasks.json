@@ -6,7 +6,7 @@
         {
             "label": "Compile and Run",
             "type": "shell",
-            "command": "javac ${file} && java ${fileBasenameNoExtension} < input.txt > output.txt",
+            "command": "javac ${file} && java -cp ${fileDirname} ${fileBasenameNoExtension} < input.txt > output.txt",
             "group": {
                 "kind": "build",
                 "isDefault": true
