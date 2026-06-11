@@ -1,0 +1,8 @@
+N : 81
+No. of Digits : 2
+Reversed : 18
+Not Palindrome !
+Not Armstrong !
+Divisors of 81 : [1, 3, 9, 27, 81]
+Not a Prime !
+GCD of (20,40) : 20
