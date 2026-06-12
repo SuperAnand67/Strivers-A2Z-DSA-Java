@@ -8,3 +8,5 @@ Anand Anand Anand Anand Anand
 5 4 3 2 1 
 1 2 3 4 5 
 5 4 3 2 1 
+Sum of First 5 Natural Numbers : 15
+15

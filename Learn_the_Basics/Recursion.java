@@ -5,6 +5,10 @@ import java.util.Scanner;
 
 class Solutions{
 
+    public void print(Object obj){
+        System.out.println(obj);
+    }
+
     int r = 0;
 
     // Recursion without Base Case
@@ -82,6 +86,30 @@ class Solutions{
         System.out.print(i + " ");
     }
 
+    public int SumOfN(int i,int n){
+        if (i == n)
+            return n;
+
+        return i + SumOfN(i + 1,n);
+    }
+
+    public int SumOfN(int n){
+        if (n < 1)
+            return n;
+
+        return n + SumOfN(n-1);
+    }
+
+    public void SumOfN_Variant(int i,int sum){
+        if (i < 1) {
+            print(sum);
+            return;
+        } 
+
+        SumOfN_Variant(i - 1,sum + i);
+        
+    }
+
 }
 
 public class Recursion {
@@ -105,6 +133,11 @@ public class Recursion {
         System.out.println();
 
         soln.printTo1_BackTrack(1, n);
+
+        System.out.printf("\nSum of First %d Natural Numbers : ",n);
+        System.out.println(soln.SumOfN(n));
+
+        soln.SumOfN_Variant(n, 0);
 
         sc.close();
     }
