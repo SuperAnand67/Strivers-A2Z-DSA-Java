@@ -110,6 +110,12 @@ class Solutions{
         
     }
 
+    public int fact(int n){
+        if(n == 0) return 1;
+
+        return n * fact(n - 1);
+    }
+
 }
 
 public class Recursion {
@@ -134,10 +140,14 @@ public class Recursion {
 
         soln.printTo1_BackTrack(1, n);
 
-        System.out.printf("\nSum of First %d Natural Numbers : ",n);
+        System.out.printf(
+            "\nSum of First %d Natural Numbers : ",n);
         System.out.println(soln.SumOfN(n));
 
         soln.SumOfN_Variant(n, 0);
+
+        System.out.printf("factorial of %d is %d\n",
+            n,soln.fact(n));
 
         sc.close();
     }
