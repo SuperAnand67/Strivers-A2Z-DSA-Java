@@ -11,3 +11,7 @@ Anand Anand Anand Anand Anand
 Sum of First 5 Natural Numbers : 15
 15
 factorial of 5 is 120
+Original Array : [5, 4, 3, 4, 5]
+Reversed Array : [5, 4, 3, 4, 5]
+Palindrome
+Malayalam is Palindrome

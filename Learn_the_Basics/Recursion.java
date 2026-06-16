@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 // TC -> Time Complexity
@@ -5,8 +6,16 @@ import java.util.Scanner;
 
 class Solutions{
 
+    // Simple Print Function
     public void print(Object obj){
         System.out.println(obj);
+    }
+
+    // A Swap function
+    public void swap(int[] arr,int a,int b){
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
     }
 
     int r = 0;
@@ -116,9 +125,63 @@ class Solutions{
         return n * fact(n - 1);
     }
 
+    public int[] reverseArray(int[] a,int left,int right){
+        if (left >= right) return a;
+
+        swap(a, left, right);
+
+        return reverseArray(a, left + 1, right - 1);
+    }
+
+    // with one pointer instead of 2
+    public int[] revArrayVariant(int[] a,int i){
+        int n = a.length;
+
+        if (i == n-i-1) return a;
+
+        swap(a, i, n-i-1);
+
+        return revArrayVariant(a, i+1);
+    }
+
+    public boolean IsPaliArray(int[] a,int i){
+        int n = a.length;
+        if (a[i] != a[n-i-1]) return false;
+        if (i >= n/2) return true;
+
+        return IsPaliArray(a, i+1);
+    }
+
+    public boolean IsPalindrome(String str){
+        if(str == null || str.isEmpty()) return false;
+
+        String s = str.toLowerCase().
+            replaceAll("[^a-zA-Z0-9]","");
+
+        return IsPalindrome(s,0);
+    }
+    
+    public boolean IsPalindrome(String str,int i){
+        int n = str.length();
+        
+        if(i >= n/2) return true;
+        if(str.charAt(i) != str.charAt(n-i-1)) return false;
+
+        return IsPalindrome(str, i+1);
+    }
+
 }
 
 public class Recursion {
+
+    public static void print(Object obj){
+        System.out.println(obj);
+    }
+
+    public static void print(){
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Solutions soln = new Solutions();
@@ -136,7 +199,7 @@ public class Recursion {
         soln.printTo1(n);
 
         soln.printToN_Backtrack(n);
-        System.out.println();
+        print();
 
         soln.printTo1_BackTrack(1, n);
 
@@ -148,6 +211,29 @@ public class Recursion {
 
         System.out.printf("factorial of %d is %d\n",
             n,soln.fact(n));
+
+        int[] arr = new int[n];
+
+        for (int i = 0; i < n; i++) arr[i] = sc.nextInt();
+
+        print("Original Array : "+ Arrays.toString(arr));
+
+        //int[] rev = soln.reverseArray(arr, 0, n-1);
+        int[] reverse = soln.revArrayVariant(arr, 0);
+        
+        print("Reversed Array : "+ Arrays.toString(reverse));
+
+        String Ispal = soln.IsPaliArray(arr, 0) ? 
+            "Palindrome":"Not Palindrome";
+
+        print(Ispal);
+
+        String str = sc.next();
+
+        String IsPalindrome = soln.IsPalindrome(str) ? 
+            "Palindrome" : "Not Palindrome";
+
+        print(str + " is " + IsPalindrome);
 
         sc.close();
     }
