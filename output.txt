@@ -3,15 +3,18 @@
 2
 3
 4
-Anand Anand Anand Anand Anand 
-1 2 3 4 5 
-5 4 3 2 1 
-1 2 3 4 5 
-5 4 3 2 1 
-Sum of First 5 Natural Numbers : 15
-15
-factorial of 5 is 120
-Original Array : [5, 4, 3, 4, 5]
-Reversed Array : [5, 4, 3, 4, 5]
-Palindrome
+5
+6
+Anand Anand Anand Anand Anand Anand Anand 
+1 2 3 4 5 6 7 
+7 6 5 4 3 2 1 
+1 2 3 4 5 6 7 
+7 6 5 4 3 2 1 
+Sum of First 7 Natural Numbers : 28
+28
+factorial of 7 is 5040
+Original Array : [5, 4, 3, 4, 5, 6, 5]
+Reversed Array : [5, 6, 5, 4, 3, 4, 5]
+Not Palindrome
 Malayalam is Palindrome
+13

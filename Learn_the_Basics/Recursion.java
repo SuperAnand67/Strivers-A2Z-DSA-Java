@@ -170,6 +170,14 @@ class Solutions{
         return IsPalindrome(str, i+1);
     }
 
+    public int fibonacci(int n){
+
+        if (n <= 1)
+            return n;
+
+        return fibonacci(n-1) + fibonacci(n-2);
+    }
+
 }
 
 public class Recursion {
@@ -234,6 +242,8 @@ public class Recursion {
             "Palindrome" : "Not Palindrome";
 
         print(str + " is " + IsPalindrome);
+
+        print(soln.fibonacci(n));
 
         sc.close();
     }
