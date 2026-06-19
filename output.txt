@@ -4,3 +4,9 @@ Frequency of 2 is 2
 Frequency of 4 is 0
 Frequency of 3 is 1
 Frequency of 10 is 0
+String : abacdefcae
+Frequency of a is 3
+Frequency of b is 1
+Frequency of f is 1
+Frequency of h is 0
+Frequency of e is 2

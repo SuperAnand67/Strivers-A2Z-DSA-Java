@@ -1,14 +1,27 @@
 import java.util.Scanner;
 
 class HashingSoln{
-    // HashMap Basics -> Precompute
-    public int[] precompute(int[] arr){
-        int n = arr.length;
-        
+    // HashMap Basics -> Precompute - Number Hashing
+    public int[] precompute(int[] arr){        
         int[] hash = new int[10000000];
 
         for (int i : arr) {
             hash[arr[i]]++;
+        }
+
+        return hash;
+    }
+
+    // Precompute - Character Hasing
+    // Ascii Values
+    // 0 - 48
+    // 'A' - 65
+    // 'a' - 97
+    public int[] precomputeChar(String str){
+        int[] hash = new int[256];
+
+        for(char c:str.toCharArray()){
+            hash[c]++;
         }
 
         return hash;
@@ -58,6 +71,19 @@ public class Hashing {
             int num = sc.nextInt();
             System.out.println("Frequency of " + num + " is " + 
                 hash[num]);
+        }
+
+        String str = sc.next();
+        println("String : " + str);
+
+        int[] hashC = hashS.precomputeChar(str);
+
+        int r = sc.nextInt();
+
+        while (r-- > 0) {
+            char ch = sc.next().charAt(0);
+            System.out.println("Frequency of " + ch + " is " + 
+                hashC[ch]);
         }
         
         sc.close();
