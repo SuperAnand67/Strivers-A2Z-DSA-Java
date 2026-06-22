@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 class HashingSoln {
@@ -29,7 +28,7 @@ class HashingSoln {
         return hash;
     }
 
-    public HashMap precomputeOptimal(int[] arr){
+    public HashMap<Integer, Integer> precomputeOptimal(int[] arr){
         HashMap<Integer, Integer> table = new HashMap<>();
 
         for(int i : arr){
