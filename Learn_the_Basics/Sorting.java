@@ -64,6 +64,52 @@ class SortingAlgo {
             }
         }
     }
+
+    public void merge_sort(int[] arr){
+        int n = arr.length;
+        merge_sort(arr, 0, n-1);
+    }
+
+    public void merge_sort(int[] arr,int low,int high){
+        if (low >= high) return;
+
+        int mid = (low + high) / 2;
+
+        merge_sort(arr, low, mid);
+        merge_sort(arr, mid+1, high);
+        merge(arr, low, mid, high);
+
+    }
+
+    public void merge(int[] arr, int low, int mid, int high){
+        int left = low;
+        int right = mid + 1;
+        int i = 0;
+        int[] temp = new int[high - low +1];
+        
+        while (right <= high && left <= mid) {
+            if (arr[left] > arr[right])
+                temp[i++] = arr[right++];
+            else
+                temp[i++] = arr[left++];
+        }
+
+        if (left <= mid) {
+            while (left <= mid)
+                temp[i++] = arr[left++];
+        }
+
+        if (right <= high) {
+            while (right <= high)
+                temp[i++] = arr[right++];
+        }
+
+        //int k = 0;
+
+        for (int j = low; j <= high; j++) {
+            arr[j] = temp[j - low];
+        }
+    }
 }
 
 public class Sorting {
@@ -88,11 +134,28 @@ public class Sorting {
 
         printArray(arr);
 
-        // sort.selectionSort(arr);
-        // sort.bubble_sort(arr);
-        sort.insertion_sort(arr);
+        int[] cpy = arr.clone();
 
-        printArray(arr);
+        System.out.println("Selection Sort");
+        sort.selection_sort(cpy);
+        printArray(cpy);
+        cpy = arr.clone();
+
+        System.out.println("Bubble Sort");
+        sort.bubble_sort(cpy);
+        printArray(cpy);
+        cpy = arr.clone();
+        
+        System.out.println("Insertion Sort");
+        sort.insertion_sort(cpy);
+        printArray(cpy);
+        cpy = arr.clone();
+
+        System.out.println("Merge Sort");
+        sort.merge_sort(cpy);
+        printArray(cpy);
+        cpy = arr.clone();
+
 
         in.close();
     }
