@@ -1,0 +1,11 @@
+Array : 91 53 72 11 2 34 8 56 
+Selection Sort
+Array : 2 8 11 34 53 56 72 91 
+Bubble Sort
+Array : 2 8 11 34 53 56 72 91 
+Insertion Sort
+Array : 2 8 11 34 53 56 72 91 
+Merge Sort
+Array : 2 8 11 34 53 56 72 91 
+Quick Sort
+Array : 2 8 11 34 53 56 72 91 
