@@ -7,3 +7,5 @@ Insertion Sort
 Array : 2 8 11 34 53 56 72 91 
 Merge Sort
 Array : 2 8 11 34 53 56 72 91 
+Quick Sort
+Array : 2 8 11 34 53 56 72 91 

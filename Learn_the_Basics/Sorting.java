@@ -77,8 +77,8 @@ class SortingAlgo {
 
         merge_sort(arr, low, mid);
         merge_sort(arr, mid+1, high);
-        merge(arr, low, mid, high);
 
+        merge(arr, low, mid, high);
     }
 
     public void merge(int[] arr, int low, int mid, int high){
@@ -94,21 +94,65 @@ class SortingAlgo {
                 temp[i++] = arr[left++];
         }
 
-        if (left <= mid) {
-            while (left <= mid)
-                temp[i++] = arr[left++];
-        }
+        while (left <= mid)
+            temp[i++] = arr[left++];
 
-        if (right <= high) {
-            while (right <= high)
-                temp[i++] = arr[right++];
-        }
+        while (right <= high)
+            temp[i++] = arr[right++];
 
         //int k = 0;
 
         for (int j = low; j <= high; j++) {
             arr[j] = temp[j - low];
         }
+    }
+
+    public void quick_sort(int[] arr){
+
+        quick_sort(arr,0,arr.length-1);
+    }
+
+    // Lomuto Partition
+    public int partition1(int[] arr, int low, int high){
+        int pivot = arr[high];
+        int i = low - 1;
+
+        for (int j = low; j < high; j++) {
+            if(arr[j] < pivot)
+                swap(arr, ++i, j);
+        }
+        swap(arr, high, i+1);
+
+        return i+1;
+    }
+
+    // Hoare Partition
+    public int partition2(int[] arr, int low, int high){
+        int pivot = arr[low];
+        int i = low;
+        int j = high;
+
+        while (j > i) {
+            while (i <= high && arr[i] <= pivot) i++;
+            while (j >= low && arr[j] > pivot) j--;
+
+            if(i < j) swap(arr, i, j);
+        }
+
+        swap(arr, low, j);
+
+        return j;
+
+    }
+
+    public void quick_sort(int[] arr, int low, int high){
+
+        if (low >= high) return;
+
+        int pivot = partition2(arr, low, high);
+
+        quick_sort(arr, low, pivot - 1);
+        quick_sort(arr, pivot + 1, high);
     }
 }
 
@@ -156,6 +200,10 @@ public class Sorting {
         printArray(cpy);
         cpy = arr.clone();
 
+        System.out.println("Quick Sort");
+        sort.quick_sort(cpy);
+        printArray(cpy);
+        cpy = arr.clone();
 
         in.close();
     }
