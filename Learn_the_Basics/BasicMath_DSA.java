@@ -179,6 +179,25 @@ class BasicMath{
         return Math.abs(a - b);
     }
 
+    public void Getgcd(int n1,int n2){
+
+        if(n1 <= 0) {
+            System.out.println(n2);
+            return;
+        } 
+        if(n2 <= 0){
+            System.out.println(n1);
+            return;
+        }
+        if (n1 > n2)
+            n1 = n1 % n2;
+        else
+            n2 = n2 % n1;
+
+        Getgcd(n1, n2);
+        
+    }
+
 }
 
 public class BasicMath_DSA {
@@ -188,7 +207,7 @@ public class BasicMath_DSA {
 
         int n = in.nextInt();
         int n1 = in.nextInt();
-        int n2 =in.nextInt();
+        int n2 = in.nextInt();
 
         System.out.println("N : " + n);
 
@@ -210,6 +229,9 @@ public class BasicMath_DSA {
 
         System.out.printf("GCD of (%d,%d) : %d\n",
                 n1,n2,bm.getGCD_Euclidean(n1, n2));
+
+        System.out.printf("GCD of (%d,%d) : ",n1,n2);
+        bm.Getgcd(n1, n2);
 
         in.close();
     }
