@@ -1,9 +1,17 @@
-Array : 33 52 71 83 10 80 
-Sorted Array : [10, 33, 52, 71, 80, 83]
-Largest Element : 83
-Second Largest Element : 80
+Array : 33 52 71 83 10 80 98 
+Sorted Array : [10, 33, 52, 71, 80, 83, 98]
+Largest Element : 98
+Second Largest Element : 83
 Not Sorted
 
-Array : 1 1 2 2 2 3 5 
+Array : 1 1 2 2 2 3 5 5 
 Unique Elements : 4
-Array : 1 2 3 5 2 1 2 
+Array : 1 2 3 5 2 1 2 5 
+
+Array : 1 2 3 4 5 6 7 
+After Left Rotaion By one Place
+Array : 2 3 4 5 6 7 1 
+After Left Rotation by 10 Places
+Array : 4 5 6 7 1 2 3 
+After Right Rotation by 10 Places
+Array : 5 6 7 1 2 3 4 
