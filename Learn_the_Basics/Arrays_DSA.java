@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 
 class Solutions{
@@ -41,7 +43,7 @@ class Solutions{
         return max;
     }
 
-    // TC -> O(2n) +> O(n)
+    // TC -> O(2n) + O(n)
     public int secondLargest(int[] arr){
         int largest = largest_element(arr);
         int second_largest = -1;
@@ -95,8 +97,10 @@ class Solutions{
         int i = 0;
 
         for (int j = 1; j < arr.length; j++){
-            if (arr[i] != arr[j])
-                swap(arr, ++i, j);
+            if (arr[i] != arr[j]){
+                i++;
+                swap(arr, i, j);
+            }
         }
 
         return i+1;
@@ -118,7 +122,7 @@ class Solutions{
         k = k % n;
         int[] temp = new int[k];
 
-        // Copying Rotaed elements to a new array
+        // Copying Rotated elements to a new array
         for (int i = 0; i < temp.length; i++)
             temp[i] = arr[i];
 
@@ -152,6 +156,103 @@ class Solutions{
 
         reverse(arr);
     }
+
+    public void moveZeros_brute(int[] arr){
+        int n = arr.length;
+        var temp = new ArrayList<Integer>(); // Temp arr for Non Zeros
+
+        // Copy Non Zeros to Temp Array
+        for (int i = 0; i < n; i++) {
+            if (arr[i] != 0) {
+                temp.add(arr[i]);
+            }
+        }
+
+        // Replace Non Zeros from Temp to original Array
+        for (int i = 0; i < temp.size(); i++) {
+            arr[i] = temp.get(i);
+        }
+
+        // Add Zeros to Last
+        for (int i = temp.size(); i < arr.length; i++) {
+            arr[i] = 0;
+        }
+    }
+
+    public void moveZeros(int[] arr){
+        int i = 0;
+
+        for (int j = 0; j < arr.length; j++) {
+            if (arr[j] != 0) {
+                swap(arr, i, j);
+                i++;
+            }
+        }
+    }
+
+    public int linear_search(int[] arr, int key){
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == key) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    public HashSet<Integer> union_brute(int[] a1, int[] a2){
+        var union = new HashSet<Integer>();
+
+        for (int i : a1) {
+            union.add(i);
+        }
+
+        for (int i : a2) {
+            union.add(i);
+        }
+
+        return union;
+    }
+
+    private void addUnique(ArrayList<Integer> list, int val){
+        if (list.isEmpty() || list.get(list.size() - 1) != val) {
+                    list.add(val);
+        }
+    }
+
+    public ArrayList<Integer> union(int[] arr1, int[] arr2){
+        int i = 0;
+        int j = 0;
+        var union = new ArrayList<Integer>();
+
+        while (i < arr1.length && j < arr2.length) {
+            if (arr1[i] < arr2[j]) {
+                addUnique(union, arr1[i]);
+                i++; 
+            }
+            else if (arr1[i] > arr2[j]) {
+                addUnique(union, arr2[j]);
+                j++;
+            }
+            else{
+                addUnique(union, arr1[i]);
+                i++;
+                j++;
+            }
+        }
+
+        while (i < arr1.length) {
+            addUnique(union, arr1[i]);
+            i++;
+        }
+
+        while (j < arr2.length) {
+            addUnique(union, arr2[j]);
+            j++;
+        }
+
+        return union;
+    }
 }
 
 public class Arrays_DSA {
@@ -167,6 +268,14 @@ public class Arrays_DSA {
         for (int i = 0; i < arr.length; i++) {
             arr[i] = sc.nextInt();
         }
+    }
+
+    public static int[] arrayCreate(int n,Scanner sc){
+        int[] arr = new int[n];
+
+        getElements(arr, sc);
+
+        return arr;
     }
 
     public static void main(String[] args) {
@@ -241,6 +350,32 @@ public class Arrays_DSA {
         sol.rightRotate(array,r);
         System.out.println("After Right Rotation by " + r + " Places");
         printArray(array);
+
+        System.out.println();
+
+        int[] move = arrayCreate(n+1, sc);
+        printArray(move);
+        System.out.println("After Moving Zero's to the End");
+        sol.moveZeros(move);
+        printArray(move);
+
+        System.out.println();
+        printArray(cpy);
+        int target = sc.nextInt();
+        int index = sol.linear_search(cpy, target);
+        if (index == -1)
+            System.out.println("Element " + target + " Not Found !");
+        else
+            System.out.printf("Element %d present at index %d\n",target,index);
+
+        System.out.println();
+
+        int n2 = sc.nextInt();
+        int[] a1 = arrayCreate(n, sc);
+        int[] a2 = arrayCreate(n2, sc);
+        printArray(a1);
+        printArray(a2);
+        System.out.println("Union : " + sol.union(a1, a2));
 
         sc.close();
     }
