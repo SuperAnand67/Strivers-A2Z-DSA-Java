@@ -220,6 +220,7 @@ class Solutions{
         }
     }
 
+    // TC -> O(2n) -> O(n)
     public ArrayList<Integer> union(int[] arr1, int[] arr2){
         int i = 0;
         int j = 0;
@@ -252,6 +253,50 @@ class Solutions{
         }
 
         return union;
+    }
+
+    // TC -> O(n1 x n2)
+    // SC -> O(n2)
+    public ArrayList<Integer> intersection_brute(int[] a1,int[] a2){
+        int n1 = a1.length;
+        int n2 = a2.length;
+
+        int[] visited = new int[n2];
+
+        var intersection = new ArrayList<Integer>();
+
+        for (int i = 0; i < n1; i++) {
+            for (int j = 0; j < n2; j++) {
+                if (a1[i] == a2[j] && visited[j] == 0) {
+                    intersection.add(a1[i]);
+                    visited[j] = 1;
+                    break;
+                }
+                if (a2[j] > a1[i]) break;
+            }
+        }
+
+        return intersection;
+    }
+
+    public ArrayList<Integer> intersection(int[] a1, int[] a2){
+        int i = 0;
+        int j = 0;
+
+        var intersection = new ArrayList<Integer>();
+
+        while (i < a1.length && j < a2.length) {
+            if (a1[i] < a2[j]) i++;
+            else if(a1[i] > a2[j]) j++;
+            else {
+                intersection.add(a1[i]);
+                i++;
+                j++;
+            }
+            
+        }
+
+        return intersection;
     }
 }
 
@@ -376,6 +421,8 @@ public class Arrays_DSA {
         printArray(a1);
         printArray(a2);
         System.out.println("Union : " + sol.union(a1, a2));
+        System.out.println("Intersection : " + 
+            sol.intersection(a1, a2));
 
         sc.close();
     }
