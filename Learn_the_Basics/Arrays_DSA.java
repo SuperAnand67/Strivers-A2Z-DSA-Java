@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Scanner;
 
 class Solutions{
@@ -10,6 +9,13 @@ class Solutions{
         int temp = arr[a];
         arr[a] = arr[b];
         arr[b] = temp;
+    }
+
+    public static int max(int a, int b){
+        if(a > b)
+            return a;
+
+        return b;
     }
 
     public static void reverse(int[] arr, int i, int j){
@@ -298,6 +304,68 @@ class Solutions{
 
         return intersection;
     }
+
+    // TC -> O(n^2)
+    // SC -> O(n) 
+    public int missing_num_better(int[] arr, int n){
+        int[] hash = new int[n+1];
+
+        for (int i = 0; i < arr.length; i++) {
+            hash[arr[i]] = 1;
+        }
+
+        for (int i = 1; i < hash.length; i++) {
+            if (hash[i] == 0) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    // TC -> O(n)
+    public int missing_num(int[] arr, int n){
+        int sum = n * (n + 1) / 2;
+        int curSum = 0;
+
+        for (int i : arr) {
+            curSum += i;
+        }
+
+        return sum - curSum;
+    }
+
+    public int missing_num_optimal(int[] arr, int n){
+        int xor1 = 0;
+        int xor2 = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            xor2 ^= arr[i];
+            xor1 ^= (i+1);
+        }
+
+        xor1 ^= n;
+
+        return xor1 ^ xor2;
+    }
+
+    public int max_consecutive_ones(int[] arr){
+        int count = 0;
+        int max = 0;
+
+        for (int i : arr) {
+            if (i == 1) {
+                count++;
+                max = max(max, count);
+            }
+            else{
+                //max = (count >= max) ? count : max;
+                count = 0;
+            }
+        }
+
+        return max;
+    }
 }
 
 public class Arrays_DSA {
@@ -423,6 +491,25 @@ public class Arrays_DSA {
         System.out.println("Union : " + sol.union(a1, a2));
         System.out.println("Intersection : " + 
             sol.intersection(a1, a2));
+
+        System.out.println();
+
+        int num = sc.nextInt();
+        int[] nums = arrayCreate(num - 1, sc);
+        printArray(nums);
+        System.out.println("Missing Number : " + 
+            sol.missing_num_optimal(nums, num)
+        );
+
+        System.out.println();
+
+        int one = sc.nextInt();
+        int[] ones_array = arrayCreate(one, sc);
+        printArray(ones_array);
+        System.out.println("Max Consecutive Ones : " + 
+            sol.max_consecutive_ones(ones_array)
+        );
+
 
         sc.close();
     }
