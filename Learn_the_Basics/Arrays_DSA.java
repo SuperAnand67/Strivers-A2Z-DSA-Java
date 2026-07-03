@@ -1,7 +1,12 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
+
+import javax.lang.model.type.IntersectionType;
 
 class Solutions{
 
@@ -363,8 +368,83 @@ class Solutions{
                 count = 0;
             }
         }
-
         return max;
+    }
+
+    // TC -> O(n^2)
+    public int appear_once_brute(int[] arr){
+        int n = arr.length;
+
+        for (int i = 0; i < n; i++) {
+            int num = arr[i];
+            int count = 0;
+            for (int j = 0; j < n; j++) {
+                if (arr[j] == num) {
+                    count++;
+                }
+            }
+            if (count == 1) {
+                return num;
+            }
+        }
+        return -1;
+    }
+
+    // TC -> O(n/2 + 1) + O(n log m)
+    // SC -> O(n/2 +1)
+    public int appear_once_better(int[] arr){
+        int n = arr.length;
+
+        // int maxi = arr[0];
+
+        // // O(n)
+        // for (int i : arr) {
+        //     maxi = max(maxi, i);
+        // }
+
+        // int[] hash = new int[maxi + 1];
+
+        // // O(n)
+        // for (int i = 0; i < n; i++) {
+        //     hash[arr[i]]++;
+        // }
+
+        // // O(max)
+        // for (int i = 0; i < hash.length; i++) {
+        //     if (hash[i] == 1) {
+        //         return i;
+        //     }
+        // }
+
+        var hash = new HashMap<Integer, Integer>();
+
+        // for (int i = 0; i < n; i++) {
+        //     hash.put(arr[i], hash.getOrDefault(arr[i], 0) + 1);
+        // }
+
+        // O(n)
+        for (int i : arr) {
+            hash.merge(i, 1, Integer::sum);
+        }
+
+        // O(n)
+        for (Entry<Integer, Integer> e : hash.entrySet()) {
+            if (e.getValue() == 1) {
+                return e.getKey();
+            }
+        }
+        return -1;
+    }
+
+    // TC -> O(n)
+    public int appear_once(int[] arr){
+        int xor = 0;
+
+        for (int i : arr) {
+            xor ^= i;
+        }
+
+        return xor;
     }
 }
 
@@ -507,9 +587,15 @@ public class Arrays_DSA {
         int[] ones_array = arrayCreate(one, sc);
         printArray(ones_array);
         System.out.println("Max Consecutive Ones : " + 
-            sol.max_consecutive_ones(ones_array)
+            sol.max_consecutive_ones(ones_array) + "\n"
         );
 
+        arr = arrayCreate(n, sc);
+        printArray(arr);
+        System.out.println("Number that appear only once : "
+            + sol.appear_once(arr)
+        );
+        System.out.println();
 
         sc.close();
     }

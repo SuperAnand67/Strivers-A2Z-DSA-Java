@@ -33,3 +33,7 @@ Missing Number : 5
 
 Array : 1 2 1 1 4 1 1 1 0 
 Max Consecutive Ones : 3
+
+Array : 1 1 2 2 3 3 4 
+Number that appear only once : 4
+
