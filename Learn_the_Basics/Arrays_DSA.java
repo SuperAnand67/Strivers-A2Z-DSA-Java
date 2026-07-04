@@ -2,13 +2,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 
-import javax.lang.model.type.IntersectionType;
-
 class Solutions{
+
+    public void printArray(int[] arr){
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public void printArray(int[] arr, int s, int e){
+        for (int i = s; i <= e; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
 
     public static void swap(int[] arr, int a, int b){
         int temp = arr[a];
@@ -40,6 +51,42 @@ class Solutions{
             i++;
             j--;
         }
+    }
+
+    public int sumArray(int[] arr, int s, int e){
+        int sum = 0;
+        for (int i = s; i <= e; i++) {
+           sum += arr[i]; 
+        }
+
+        return sum;
+    }
+
+    public int rangeSum(int[] prefixArray, int i, int j){
+        if (i == 0) {
+            return prefixArray[j];
+        }
+
+        int sum = prefixArray[j] - prefixArray[i - 1];
+
+        return sum;
+    }
+
+    public int[] prefixSum(int[] arr){
+        int n = arr.length;
+        int[] prefixArray = new int[n];
+
+        prefixArray[0] = arr[0];
+        
+        // for (int i = 0; i < arr.length; i++) {   // O(n^2)
+        //     prefixArray[i] = sumArray(arr, 0, i);
+        // }
+
+        for (int i = 1; i < n; i++) { // O(n)
+            prefixArray[i] = prefixArray[i - 1] + arr[i];
+        }
+
+        return prefixArray;
     }
 
     // TC -> O(n)
@@ -393,7 +440,7 @@ class Solutions{
     // TC -> O(n/2 + 1) + O(n log m)
     // SC -> O(n/2 +1)
     public int appear_once_better(int[] arr){
-        int n = arr.length;
+        //int n = arr.length;
 
         // int maxi = arr[0];
 
@@ -445,6 +492,88 @@ class Solutions{
         }
 
         return xor;
+    }
+
+    public void printAllSubArrays(int[] arr){
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i; j < arr.length; j++) {
+                System.out.print("SubArray " + ++count + " -> ");
+                printArray(arr, i, j);
+            }
+            System.out.println();
+        }
+        System.out.println("No of SubArrays : " + count);
+    }
+
+    // Returns Longest Sub Array Length with sum k
+    // TC -> O(n^3) -> O(n^2)
+    public int longest_subArraySum_brute(int[] arr, int k){
+        int n = arr.length;
+        int max = 0;
+        
+        for (int i = 0; i < n; i++) {      // O(n)
+            int sum = 0;
+            for (int j = i; j < n; j++) {   // O(n)
+                //int currSum = sumArray(arr, i, j);    // O(n)
+                sum += arr[j];
+                if (sum == k) {
+                    printArray(arr, i, j);
+                    int len = j - i + 1;
+                    max = max(max, len);
+                }
+            }
+        }
+        return max;
+    }
+
+    // TC -> O(n)
+    // SC -> O(n)
+    public int longest_subArraySum_better(int[] arr, int k){
+        var prefixMap = new HashMap<Integer, Integer>();
+        prefixMap.put(0, -1);
+        int maxLength = 0;
+        int currPrefixSum = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            currPrefixSum += arr[i];
+            int prevPrefixSum = currPrefixSum - k;
+            if (prefixMap.containsKey(prevPrefixSum)) {
+                int len = i - prefixMap.get(prevPrefixSum);
+                maxLength = max(len,maxLength);
+            }
+
+            if(!prefixMap.containsKey(currPrefixSum)){
+                prefixMap.put(currPrefixSum, i);
+            }
+        }
+        return maxLength;
+    }
+
+    public int longest_subArraySum(int[] arr, int k){
+        int n = arr.length;
+        int sum = arr[0];
+        int i = 0;
+        int j = 0;
+        int maxLen = 0;
+
+        while (j < n) {
+            while (i <= j && sum > k) {
+                sum -= arr[i];
+                i++;
+            }
+
+            if (sum == k) {
+                int len = j - i + 1;
+                maxLen = max(maxLen, len);
+            }
+
+            j++;
+            if(j < n) sum += arr[j];
+            
+        }
+
+        return maxLen;
     }
 }
 
@@ -596,6 +725,16 @@ public class Arrays_DSA {
             + sol.appear_once(arr)
         );
         System.out.println();
+
+        arr = arrayCreate(n, sc);
+        int k = sc.nextInt();
+        printArray(arr);
+        System.out.println("Longest SubArray With Sum " + 
+            k + " length : " + sol.longest_subArraySum(arr, k) + 
+            "\n"
+        );
+
+        //printArray(sol.prefixSum(arr));
 
         sc.close();
     }
