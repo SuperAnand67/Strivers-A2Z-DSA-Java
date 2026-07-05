@@ -40,3 +40,5 @@ Number that appear only once : 4
 Array : 1 2 3 1 1 1 3 
 Longest SubArray With Sum 5 length : 3
 
+Array : 1 3 7 8 11 16 20 
+Indexes of required 2 Sums in Array : [1, 5]

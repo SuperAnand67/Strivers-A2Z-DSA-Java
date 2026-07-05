@@ -572,8 +572,61 @@ class Solutions{
             if(j < n) sum += arr[j];
             
         }
-
         return maxLen;
+    }
+
+    // TC -> O(n^2)
+    // SC -> O(1)
+    public int[] twoSum_brute(int[] arr, int target){
+        int n = arr.length;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i+1; j < arr.length; j++) {
+                if(arr[i] + arr[j] == target)
+                    return new int[] {i,j};
+            }
+        }
+
+        return new int[] {-1,-1};
+    }
+
+    // TC -> O(n)
+    // SC -> O(n)
+    public int[] twoSum_better(int[] arr, int target){
+        int n = arr.length;
+
+        var map = new HashMap<Integer, Integer>();
+
+        for (int i = 0; i < n; i++) {
+            int x = target - arr[i];
+            if (map.containsKey(x)) {
+                return new int[]{map.get(x), i};
+            }
+            if (!map.containsKey(x)) {
+                map.put(arr[i], i);
+            }
+        }
+        return new int[] {-1,-1};
+    }
+
+    public int[] twoSum_sorted(int[] arr, int target){
+        int n = arr.length;
+        int l = 0;
+        int r = n - 1;
+
+        while (l < r) {
+            int sum = arr[l] + arr[r];
+            if (sum == target) {
+                return new int[]{l,r};
+            }
+            else if (sum < target) {
+                l++;
+            }
+            else
+                r--;
+        }
+
+        return new int[]{-1,-1};
     }
 }
 
@@ -736,6 +789,13 @@ public class Arrays_DSA {
 
         //printArray(sol.prefixSum(arr));
 
+        arr = arrayCreate(n, sc);
+        int sum = sc.nextInt();
+        printArray(arr);
+        int[] val = sol.twoSum_sorted(arr, sum);
+        System.out.println("Indexes of required 2 Sums in Array : "
+            + Arrays.toString(val)
+        );        
         sc.close();
     }
 }
