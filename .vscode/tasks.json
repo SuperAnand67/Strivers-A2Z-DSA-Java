@@ -11,6 +11,20 @@
                 "kind": "build",
                 "isDefault": true
             }
-        }
+        },
+        {
+            "label": "Compile All and Run",
+            "type": "shell",
+            "command": "javac ${fileDirname}/*.java && java -cp ${fileDirname} ${fileBasenameNoExtension} < input.txt > output.txt",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Compile and Run - V2",
+            "type": "shell",
+            "command": "java ${fileDirname}/${fileBasename} < input.txt > output.txt",
+            "group": "build",
+            "problemMatcher": []
+        }  
     ]
 }
