@@ -699,6 +699,7 @@ public class Array_Solutions{
         return -1;
     }
 
+    // Boyer - Moore Majority Voting Algorithm
     // TC -> O(2n) or if array always have majority ele -> O(n)
     // SC -> O(1)
     public int majority_element(int[] arr){
