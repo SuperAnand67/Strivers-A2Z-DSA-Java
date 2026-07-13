@@ -40,6 +40,13 @@ public class Array_Solutions{
         return b;
     }
 
+    public static int min(int a, int b){
+        if (a > b)
+            return b;
+
+        return a;
+    }
+
     public static void reverse(int[] arr, int i, int j){
         while (i <= j) {
             swap(arr, i, j);
@@ -790,5 +797,22 @@ public class Array_Solutions{
         }
 
         return maxSum;
+    }
+
+    // Returns Maximum Profit on Buy and Sell Stocks
+    // TC -> O(n)
+    // 
+    public int buySell_Stocks(int[] arr){
+        int n = arr.length;
+        int min = arr[0];
+        int profit = 0;
+
+        for (int i = 1; i < n; i++) {
+            int cost = arr[i] - min;
+            profit = max(profit, cost);
+            min = min(arr[i], min);
+        }
+
+        return profit;
     }
 }

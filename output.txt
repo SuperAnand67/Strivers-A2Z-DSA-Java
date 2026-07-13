@@ -54,3 +54,6 @@ Array : -2 -3 4 -1 -2 1 5 -3
 Maximum Subarray : [4, -1, -2, 1, 5]
 Maximum Subarray Sum : 7
 
+Stock Prices : 7 1 5 3 6 4 
+Maximum Profit : 5
+

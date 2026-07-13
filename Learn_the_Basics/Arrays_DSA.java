@@ -11,6 +11,13 @@ public class Arrays_DSA {
         System.out.println();
     }
 
+    public static void printArray(int[] arr, String name){
+
+        System.out.print(name + " : ");
+        for (int i : arr) System.out.print(i + " ");
+        System.out.println();
+    }
+
 
     public static int[] arrayCreate(int n,Scanner sc){
         int[] arr = new int[n];
@@ -178,6 +185,14 @@ public class Arrays_DSA {
         int max_subarraySum = sol.max_subarray_sum(arr);
         System.out.println("Maximum Subarray Sum : "
             + max_subarraySum + "\n"
+        );
+
+        arr = arrayCreate(n - 1, sc);
+        printArray(arr,"Stock Prices");
+        int maxProfit = sol.buySell_Stocks(arr);
+        System.out.println(
+            "Maximum Profit : " +
+            maxProfit + '\n'
         );
 
         sc.close();
