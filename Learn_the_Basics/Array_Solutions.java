@@ -8,17 +8,23 @@ import java.util.Map.Entry;
 public class Array_Solutions{
 
     public void printArray(int[] arr){
-        for (int i = 0; i < arr.length; i++) {
+        int n = arr.length;
+        for (int i = 0; i < n; i++) {
             System.out.print(arr[i] + " ");
         }
         System.out.println();
     }
 
     public void printArray(int[] arr, int s, int e){
+        System.out.print("[");
         for (int i = s; i <= e; i++) {
-            System.out.print(arr[i] + " ");
+            if (i == e) {
+                System.out.print(arr[i]);    
+            }
+            else
+                System.out.print(arr[i] + ", ");
         }
-        System.out.println();
+        System.out.println("]");
     }
 
     public static void swap(int[] arr, int a, int b){
@@ -732,5 +738,57 @@ public class Array_Solutions{
             return element;
         }
         return -1;
+    }
+
+    // TC -> O(n^2)
+    // SC -> O(1)
+    public int max_subarray_sum_better(int[] arr){
+        int max = Integer.MIN_VALUE;
+
+        for (int i = 0; i < arr.length; i++) {
+            int sum = 0;
+            for (int j = i; j < arr.length; j++) {
+                sum += arr[j];
+                max = max(sum,max);
+            }
+        }
+
+        return max;
+    }
+
+    // Kadane's Algorithm
+    // TC -> O(n)
+    // SC -> O(1)
+    public int max_subarray_sum(int[] arr){
+        int n = arr.length;
+        int maxSum = 0;
+        int sum = 0;
+        int arrStart = -1;
+        int arrEnd = -1;
+        int start = 0;
+
+        for (int i = 0; i < n; i++) {
+
+            if(sum == 0) start = i;
+
+            sum += arr[i];
+
+            if (sum > maxSum) {
+                maxSum = sum;
+                arrStart = start;
+                arrEnd = i;
+            }
+
+            if (sum < 0) {
+                sum = 0;
+            }
+        }
+
+        if (!(arrStart == -1 && arrEnd == -1)) {
+            System.out.print("Maximum Subarray : ");
+            printArray(arr, arrStart, arrEnd);
+        }
+
+        return maxSum;
     }
 }

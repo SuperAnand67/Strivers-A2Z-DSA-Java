@@ -50,3 +50,7 @@ Array : 0 0 0 1 1 1 2 2 2
 Array : 1 2 2 2 2 4 1 2 
 Majority Element : 2
 
+Array : -2 -3 4 -1 -2 1 5 -3 
+Maximum Subarray : [4, -1, -2, 1, 5]
+Maximum Subarray Sum : 7
+

@@ -173,6 +173,13 @@ public class Arrays_DSA {
             + majorityElement + "\n"
         );
 
+        arr = arrayCreate(n + 1, sc);
+        printArray(arr);
+        int max_subarraySum = sol.max_subarray_sum(arr);
+        System.out.println("Maximum Subarray Sum : "
+            + max_subarraySum + "\n"
+        );
+
         sc.close();
     }
 }
