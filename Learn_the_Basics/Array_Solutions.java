@@ -815,4 +815,54 @@ public class Array_Solutions{
 
         return profit;
     }
+
+    // Returns Rearranged array with alternating signs
+    // TC -> O(2n)
+    // SC -> O(n)
+    public void rearrange_by_sign_brute(int[] arr){
+        int n = arr.length;
+        int[] plus = new int[n/2];
+        int[] minus = new int[n/2];
+        int j = 0, k = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (arr[i] > 0) {
+                plus[k] = arr[i];
+                k++;
+            }
+            else{
+                minus[j] = arr[i];
+                j++;
+            }
+        }
+
+
+        for (int i = 0; i < n/2; i++) {
+            arr[2 * i] = plus[i];
+            arr[2 * i + 1] = minus[i];
+        }
+    }
+
+    // TC -> O(n)
+    // SC -> O(n)
+    public void rearrange_by_sign(int[] arr){
+        int n = arr.length;
+        int[] ans = new int[n];
+        int j = 0, k = 1;
+
+        for (int i = 0; i < n; i++) {
+            if (arr[i] > 0) {
+                ans[j] = arr[i];
+                j += 2;
+            }
+            else{
+                ans[k] = arr[i];
+                k += 2;
+            }
+        }
+
+        for (int i = 0; i < n; i++)
+            arr[i] = ans[i];
+
+    }
 }

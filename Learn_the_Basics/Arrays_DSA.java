@@ -195,6 +195,13 @@ public class Arrays_DSA {
             maxProfit + '\n'
         );
 
+        arr = arrayCreate(n+1, sc);
+        printArray(arr);
+        System.out.println("After Rearranged by Alternating Sign : ");
+        sol.rearrange_by_sign(arr);
+        printArray(arr,"New Array");
+        System.out.println();
+
         sc.close();
     }
 }
