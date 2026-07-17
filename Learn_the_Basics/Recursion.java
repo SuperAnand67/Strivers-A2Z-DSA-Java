@@ -1,4 +1,7 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 // TC -> Time Complexity
@@ -176,6 +179,36 @@ class Solutions{
             return n;
 
         return fibonacci(n-1) + fibonacci(n-2);
+    }
+
+    public void recursion_permutate(
+        boolean[] map,List<Integer> perm,
+        ArrayList<ArrayList<Integer>> ans,int[] arr){
+            int n = arr.length;
+            if (perm.size() == n) {
+                ans.add(new ArrayList<Integer>(perm));
+                return;
+            }
+
+            for (int i = 0; i < n; i++) {
+                if (!map[i]) {
+                    map[i] = true;
+                    perm.add(arr[i]);
+                    recursion_permutate(map, perm, ans, arr);
+                    perm.remove(perm.size() - 1);
+                    map[i] = false;
+                }
+            }
+            
+        }
+
+    public ArrayList<ArrayList<Integer>> permutations(int[] arr){
+        int n = arr.length;
+        boolean[] map = new boolean[n];
+        var perm = new ArrayList<Integer>();
+        var ans = new ArrayList<ArrayList<Integer>>();
+        recursion_permutate(map, perm, ans, arr);
+        return ans;
     }
 
 }

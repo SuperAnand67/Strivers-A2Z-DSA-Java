@@ -1,5 +1,7 @@
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Arrays_DSA {
@@ -32,6 +34,7 @@ public class Arrays_DSA {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Array_Solutions sol = new Array_Solutions();
+        Extra extra = new Extra();
 
         int n = sc.nextInt();
 
@@ -200,6 +203,21 @@ public class Arrays_DSA {
         System.out.println("After Rearranged by Alternating Sign : ");
         sol.rearrange_by_sign(arr);
         printArray(arr,"New Array");
+        System.out.println();
+
+        arr = arrayCreate(4, sc);
+        printArray(arr);
+        System.out.println("All Permutations : ");
+        var perms = extra.permutations(arr);
+        for (ArrayList<Integer> arrList : perms) {
+            System.out.println(arrList.toString());
+        }
+        System.out.println();
+
+        arr = arrayCreate(n, sc);
+        printArray(arr);
+        sol.next_permutation(arr);
+        printArray(arr,"Next Permutation");
         System.out.println();
 
         sc.close();

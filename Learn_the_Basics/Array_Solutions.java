@@ -2,8 +2,42 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+class Extra{
+    
+    public static void recursion_permutate(
+        boolean[] map,List<Integer> perm,
+        ArrayList<ArrayList<Integer>> ans,int[] arr){
+            int n = arr.length;
+            if (perm.size() == n) {
+                ans.add(new ArrayList<Integer>(perm));
+                return;
+            }
+
+            for (int i = 0; i < n; i++) {
+                if (!map[i]) {
+                    map[i] = true;
+                    perm.add(arr[i]);
+                    recursion_permutate(map, perm, ans, arr);
+                    perm.remove(perm.size() - 1);
+                    map[i] = false;
+                }
+            }
+            
+        }
+
+    public ArrayList<ArrayList<Integer>> permutations(int[] arr){
+        int n = arr.length;
+        boolean[] map = new boolean[n];
+        var perm = new ArrayList<Integer>();
+        var ans = new ArrayList<ArrayList<Integer>>();
+        recursion_permutate(map, perm, ans, arr);
+        return ans;
+    }
+}
 
 public class Array_Solutions{
 
@@ -59,11 +93,7 @@ public class Array_Solutions{
         int i = 0;
         int j = arr.length - 1;
 
-        while (i < j) {
-            swap(arr, i, j);
-            i++;
-            j--;
-        }
+        reverse(arr, i, j);
     }
 
     public int sumArray(int[] arr, int s, int e){
@@ -864,5 +894,46 @@ public class Array_Solutions{
         for (int i = 0; i < n; i++)
             arr[i] = ans[i];
 
+    }
+
+    // Narayana Pandita's algorithm
+    // TC -> O(3n) -> O(n)
+    // SC -> O(1)
+    public void next_permutation(int[] arr){
+        int n = arr.length;
+        //int index = -1;
+        int i = n - 2;
+
+        // for (int i = n - 2; i >= 0; i--) {
+        //     if (arr[i] < arr[i + 1]) {
+        //         index = i;
+        //         break;
+        //     }
+        // }
+
+        while (i >= 0 && arr[i] >= arr[i+1]) {
+            i--;
+        }
+
+        if (i >= 0) {
+            //int mini = index + 1;
+            // for (int i = index + 1; i < n; i++) {
+            //     if (arr[index] < arr[i] && arr[mini] <= arr[i]) {
+            //         mini = i;   
+            //     }
+            // }
+            // for (int i = n - 1; i > index; i--) {
+            //     if (arr[index] < arr[i]) {
+            //         swap(arr, index, i);
+            //         break;
+            //     }
+            // }
+            int j = n - 1;
+            while (arr[i] >= arr[j]) {
+                j--;
+            }
+            swap(arr, i, j);
+        }
+        reverse(arr, i + 1, n - 1);
     }
 }
