@@ -91,3 +91,6 @@ All Permutations :
 Array : 2 1 5 4 3 0 0 
 Next Permutation : 2 3 0 0 1 4 5 
 
+Array : 10 22 12 3 0 6 
+Leaders : [22, 12, 6]
+

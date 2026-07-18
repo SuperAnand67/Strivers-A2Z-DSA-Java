@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -901,33 +902,13 @@ public class Array_Solutions{
     // SC -> O(1)
     public void next_permutation(int[] arr){
         int n = arr.length;
-        //int index = -1;
         int i = n - 2;
-
-        // for (int i = n - 2; i >= 0; i--) {
-        //     if (arr[i] < arr[i + 1]) {
-        //         index = i;
-        //         break;
-        //     }
-        // }
 
         while (i >= 0 && arr[i] >= arr[i+1]) {
             i--;
         }
 
         if (i >= 0) {
-            //int mini = index + 1;
-            // for (int i = index + 1; i < n; i++) {
-            //     if (arr[index] < arr[i] && arr[mini] <= arr[i]) {
-            //         mini = i;   
-            //     }
-            // }
-            // for (int i = n - 1; i > index; i--) {
-            //     if (arr[index] < arr[i]) {
-            //         swap(arr, index, i);
-            //         break;
-            //     }
-            // }
             int j = n - 1;
             while (arr[i] >= arr[j]) {
                 j--;
@@ -935,5 +916,46 @@ public class Array_Solutions{
             swap(arr, i, j);
         }
         reverse(arr, i + 1, n - 1);
+    }
+
+    // Leader -> all right elements are smaller
+    // TC -> O(n^2)
+    // SC -> O(n)
+    public ArrayList<Integer> leaders_brute(int[] arr){
+        int n = arr.length;
+        var leaders = new ArrayList<Integer>();
+        //boolean isLeader = false;
+        
+        for (int i = 0; i < n; i++) {
+            boolean isLeader = true;
+            for (int j = i+1; j < n; j++) {
+                if (arr[i] < arr[j]) {
+                    isLeader = false;
+                    break;
+                }
+            }
+            if (isLeader) {
+                leaders.add(arr[i]);
+            }
+        }
+        return leaders;
+    }
+
+    // TC -> O(n)
+    // SC -> O(n)
+    public ArrayList<Integer> leaders(int[] arr){
+        int n = arr.length;
+        var leaders = new ArrayList<Integer>(n);
+        int max = Integer.MIN_VALUE;
+
+        for (int i = n-1; i >= 0; i--) {
+            if (max < arr[i]) {
+                max = arr[i];
+                leaders.add(arr[i]);
+            }
+        }
+        Collections.reverse(leaders);
+        return leaders;
+
     }
 }

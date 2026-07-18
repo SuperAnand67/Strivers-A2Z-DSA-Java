@@ -220,6 +220,13 @@ public class Arrays_DSA {
         printArray(arr,"Next Permutation");
         System.out.println();
 
+        arr = arrayCreate(n-1, sc);
+        printArray(arr);
+        var leaders = sol.leaders(arr);
+        System.out.println("Leaders : " + 
+            leaders.toString() + "\n"
+        );
+
         sc.close();
     }
 }
