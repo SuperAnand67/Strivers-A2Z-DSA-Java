@@ -1,10 +1,12 @@
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Map.Entry;
 
 class Extra{
@@ -42,7 +44,7 @@ class Extra{
 
 public class Array_Solutions{
 
-    public void printArray(int[] arr){
+    private void printArray(int[] arr){
         int n = arr.length;
         for (int i = 0; i < n; i++) {
             System.out.print(arr[i] + " ");
@@ -50,7 +52,7 @@ public class Array_Solutions{
         System.out.println();
     }
 
-    public void printArray(int[] arr, int s, int e){
+    private void printArray(int[] arr, int s, int e){
         System.out.print("[");
         for (int i = s; i <= e; i++) {
             if (i == e) {
@@ -62,27 +64,27 @@ public class Array_Solutions{
         System.out.println("]");
     }
 
-    public static void swap(int[] arr, int a, int b){
+    private static void swap(int[] arr, int a, int b){
         int temp = arr[a];
         arr[a] = arr[b];
         arr[b] = temp;
     }
 
-    public static int max(int a, int b){
+    private static int max(int a, int b){
         if(a > b)
             return a;
 
         return b;
     }
 
-    public static int min(int a, int b){
+    private static int min(int a, int b){
         if (a > b)
             return b;
 
         return a;
     }
 
-    public static void reverse(int[] arr, int i, int j){
+    private static void reverse(int[] arr, int i, int j){
         while (i <= j) {
             swap(arr, i, j);
             i++;
@@ -90,14 +92,14 @@ public class Array_Solutions{
         }
     }
 
-    public static void reverse(int[] arr){
+    private static void reverse(int[] arr){
         int i = 0;
         int j = arr.length - 1;
 
         reverse(arr, i, j);
     }
 
-    public int sumArray(int[] arr, int s, int e){
+    private int sumArray(int[] arr, int s, int e){
         int sum = 0;
         for (int i = s; i <= e; i++) {
            sum += arr[i]; 
@@ -106,7 +108,7 @@ public class Array_Solutions{
         return sum;
     }
 
-    public int rangeSum(int[] prefixArray, int i, int j){
+    private int rangeSum(int[] prefixArray, int i, int j){
         if (i == 0) {
             return prefixArray[j];
         }
@@ -116,7 +118,7 @@ public class Array_Solutions{
         return sum;
     }
 
-    public int[] prefixSum(int[] arr){
+    private int[] prefixSum(int[] arr){
         int n = arr.length;
         int[] prefixArray = new int[n];
 
@@ -956,6 +958,75 @@ public class Array_Solutions{
         }
         Collections.reverse(leaders);
         return leaders;
+    }
 
+    // Returns the length of Longest Consecutive Sequence
+    // TC -> O(n^3) because of Linear Search
+    // SC -> O(1)
+    public int long_consec_seq_brute(int[] arr){
+        int n = arr.length;
+        int len = 1;
+
+        for (int i = 0; i < n; i++) {
+            int ele = arr[i];
+            int c = 1;
+            while (linear_search(arr, ele+c) != -1) {
+                c++;
+            }
+            len = max(len,c);
+        }
+        return len;
+    }
+
+    // TC -> O(2n log n)
+    // SC -> O(1)
+    public int long_consec_seq_better(int[] arr){
+        int n = arr.length;
+        int lastSmaller = Integer.MIN_VALUE;
+        int longest = 1;
+        int count = 0;
+
+        Arrays.sort(arr);
+
+        for (int i = 0; i < n; i++) {
+            if (arr[i] - 1 == lastSmaller) {
+                count++;
+                lastSmaller = arr[i];
+            }
+            else if(arr[i]-1 != lastSmaller){
+                count = 1;
+                lastSmaller = arr[i];
+            }
+            longest = max(count, longest);
+        }
+
+        return longest;
+    }
+
+    // TC -> O(n) + O(2n)
+    public int long_consec_seq(int[] arr){
+        int n = arr.length;
+        if (n == 0) return 0;
+        var set = new HashSet<Integer>();
+        int longest = 1;
+
+        // O(n)
+        for (int x : arr) {
+            set.add(x);
+        }
+
+        // O(2n)
+        for (Integer i : set) {
+            if (!set.contains(i-1)) {
+                int c = 1;
+                int x = i;
+                while (set.contains(x+c)) {     //O(n) + O(n)
+                    c++;
+                }
+                longest = max(c, longest);
+            }
+        }
+
+        return longest;
     }
 }

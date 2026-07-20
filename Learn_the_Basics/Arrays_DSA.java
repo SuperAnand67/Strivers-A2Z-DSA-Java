@@ -1,7 +1,6 @@
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Scanner;
 
 public class Arrays_DSA {
@@ -28,6 +27,8 @@ public class Arrays_DSA {
             arr[i] = sc.nextInt();
         }
 
+        System.out.println("Array : " + Arrays.toString(arr));
+
         return arr;
     }
 
@@ -43,8 +44,6 @@ public class Arrays_DSA {
         //for (int i = 0; i < n; i++) arr[i] = sc.nextInt();
 
         int[] cpy = arr.clone();
-
-        printArray(arr);
 
         System.out.print("Sorted Array : ");
         Arrays.sort(cpy);
@@ -69,8 +68,6 @@ public class Arrays_DSA {
 
         //for (int i = 0; i < n+1; i++) arr2[i] = sc.nextInt();
 
-        printArray(arr2);
-
         System.out.println(
             "Unique Elements : " + sol.removeDuplicates(arr2)
         );
@@ -80,7 +77,6 @@ public class Arrays_DSA {
 
         int[] array = arrayCreate(n, sc);
 
-        printArray(array);
         sol.leftRotateOne(array);
         System.out.println("After Left Rotaion By one Place");
         printArray(array);
@@ -101,7 +97,6 @@ public class Arrays_DSA {
         System.out.println();
 
         int[] move = arrayCreate(n+1, sc);
-        printArray(move);
         System.out.println("After Moving Zero's to the End");
         sol.moveZeros(move);
         printArray(move);
@@ -120,8 +115,6 @@ public class Arrays_DSA {
         int n2 = sc.nextInt();
         int[] a1 = arrayCreate(n, sc);
         int[] a2 = arrayCreate(n2, sc);
-        printArray(a1);
-        printArray(a2);
         System.out.println("Union : " + sol.union(a1, a2));
         System.out.println("Intersection : " + 
             sol.intersection(a1, a2));
@@ -130,7 +123,6 @@ public class Arrays_DSA {
 
         int num = sc.nextInt();
         int[] nums = arrayCreate(num - 1, sc);
-        printArray(nums);
         System.out.println("Missing Number : " + 
             sol.missing_num_optimal(nums, num)
         );
@@ -139,13 +131,11 @@ public class Arrays_DSA {
 
         int one = sc.nextInt();
         int[] ones_array = arrayCreate(one, sc);
-        printArray(ones_array);
         System.out.println("Max Consecutive Ones : " + 
             sol.max_consecutive_ones(ones_array) + "\n"
         );
 
         arr = arrayCreate(n, sc);
-        printArray(arr);
         System.out.println("Number that appear only once : "
             + sol.appear_once(arr)
         );
@@ -153,7 +143,6 @@ public class Arrays_DSA {
 
         arr = arrayCreate(n, sc);
         int k = sc.nextInt();
-        printArray(arr);
         System.out.println("Longest SubArray With Sum " + 
             k + " length : " + sol.longest_subArraySum(arr, k) + 
             "\n"
@@ -163,28 +152,24 @@ public class Arrays_DSA {
 
         arr = arrayCreate(n, sc);
         int sum = sc.nextInt();
-        printArray(arr);
         int[] val = sol.twoSum_sorted(arr, sum);
         System.out.println("Indexes of required 2 Sums in Array : "
             + Arrays.toString(val) + "\n"
         );        
 
         arr = arrayCreate(n + 2, sc);
-        printArray(arr);
         sol.sort_Array(arr);
         System.out.println("After Sorted : ");
         printArray(arr);
         System.out.println();
 
         arr = arrayCreate(n + 1, sc);
-        printArray(arr);
         int majorityElement = sol.majority_element(arr);
         System.out.println("Majority Element : "
             + majorityElement + "\n"
         );
 
         arr = arrayCreate(n + 1, sc);
-        printArray(arr);
         int max_subarraySum = sol.max_subarray_sum(arr);
         System.out.println("Maximum Subarray Sum : "
             + max_subarraySum + "\n"
@@ -199,14 +184,12 @@ public class Arrays_DSA {
         );
 
         arr = arrayCreate(n+1, sc);
-        printArray(arr);
         System.out.println("After Rearranged by Alternating Sign : ");
         sol.rearrange_by_sign(arr);
         printArray(arr,"New Array");
         System.out.println();
 
         arr = arrayCreate(4, sc);
-        printArray(arr);
         System.out.println("All Permutations : ");
         var perms = extra.permutations(arr);
         for (ArrayList<Integer> arrList : perms) {
@@ -215,16 +198,19 @@ public class Arrays_DSA {
         System.out.println();
 
         arr = arrayCreate(n, sc);
-        printArray(arr);
         sol.next_permutation(arr);
         printArray(arr,"Next Permutation");
         System.out.println();
 
         arr = arrayCreate(n-1, sc);
-        printArray(arr);
         var leaders = sol.leaders(arr);
         System.out.println("Leaders : " + 
             leaders.toString() + "\n"
+        );
+
+        arr = arrayCreate(n, sc);
+        System.out.println("Longest Consecutive Sequence Length : " + 
+            sol.long_consec_seq(arr) + "\n"
         );
 
         sc.close();
