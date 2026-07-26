@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
 
 class Extra{
@@ -68,6 +67,12 @@ public class Array_Solutions{
         int temp = arr[a];
         arr[a] = arr[b];
         arr[b] = temp;
+    }
+
+    private static void swap(int[][] matrix, int r1, int c1, int r2, int c2){
+        int temp = matrix[r1][c1];
+        matrix[r1][c1] = matrix[r2][c2];
+        matrix[r2][c2] = temp;
     }
 
     private static int max(int a, int b){
@@ -1028,5 +1033,166 @@ public class Array_Solutions{
         }
 
         return longest;
+    }
+
+    private void mark_row(int[][] mat,int i){
+        int c = mat[0].length;
+        
+        for (int j = 0; j < c; j++) {
+            if (mat[i][j] != 0) {
+                mat[i][j] = -1;
+            }
+        }
+
+    }
+
+    private void mark_col(int[][] mat, int j){
+        int r = mat.length;
+
+        for (int i = 0; i < r; i++) {
+            if (mat[i][j] != 0) {
+                mat[i][j] = -1;
+            }
+        }
+    }
+
+    // sets all Rows and Columns of a Zero as Zeros
+    // TC -> O(n x m) x O(n + m) + O(n x m) -> O(n^2*m x n*m^2) or O(nm(n+m))
+    // SC -> O(1)
+    public void set_zeros_brute(int[][] mat){
+        int r = mat.length;
+        int c = mat[0].length;
+
+        // O(n x m) -> O(rows x columns)
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                if (mat[i][j] == 0) {
+                    mark_row(mat,i); // O(column)
+                    mark_col(mat,j); // O(row)
+                }
+            }
+        }
+
+        // O(n x m) -> O(rows x columns)
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                if (mat[i][j] == -1) 
+                    mat[i][j] = 0;
+            }
+        }
+    }
+
+    // TC -> O(2*nm)
+    // SC -> O(n + m)
+    public void set_zeros_better(int[][] matrix){
+        int r = matrix.length;
+        int c = matrix[0].length;
+
+        int[] row_visited = new int[r];
+        int[] col_visited = new int[c];
+
+        row_loop:
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                if (matrix[i][j] == 0) {
+                    row_visited[i] = 1;
+                    col_visited[j] = 1;
+                    continue row_loop;
+                }
+            }
+         }
+
+         for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                if (row_visited[i] == 1 || col_visited[j] == 1) {
+                    matrix[i][j] = 0;
+                }
+            }
+         }
+    }
+
+    // TC -> O(2*nm)
+    // SC -> O(1)
+    public void set_zeros(int[][] matrix){
+        int r = matrix.length;
+        int c = matrix[0].length;
+
+        boolean firstRowZero = false;
+        boolean firstColZero = false;
+
+        for (int i = 0; i < r; i++) {
+            if (matrix[i][0] == 0) {
+                firstRowZero = true;
+                break;
+            }
+        }
+
+        for (int j = 0; j < c; j++) {
+            if (matrix[0][j] == 0) {
+                firstColZero= true;
+                break;
+            }
+        }
+
+        for (int i = 1; i < r; i++) {
+            for (int j = 1; j < c; j++) {
+                if (matrix[i][j] == 0) {
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0; 
+                }
+            }
+        }
+
+        for (int i = r-1; i >= 1; i--) {
+            for (int j = c-1; j >= 1; j--) {
+                if (matrix[i][0] == 0 || matrix[0][j] == 0) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+
+        if (firstRowZero)
+            for (int i = 0; i < r; i++) matrix[i][0] = 0;
+        
+        if (firstColZero) 
+            for (int j = 0; j < c; j++) matrix[0][j] = 0;
+    }
+
+    public void transpose_sq_matrix(int[][] matrix){
+        int n = matrix.length;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                swap(matrix, i, j, j, i);
+            }
+        }
+
+    }
+
+    public int[][] rotate_matrix_90_brute(int[][] matrix){
+        if (matrix.length != matrix[0].length) 
+            return null;
+
+        int n = matrix.length;
+        int[][] result = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                result[j][n - i - 1] = matrix[i][j];
+            }
+        }
+
+        return result;
+    }
+
+    public void rotate_matrix_90(int[][] matrix){
+        if (matrix.length != matrix[0].length) 
+            return;
+
+        int n = matrix.length;
+
+        transpose_sq_matrix(matrix);
+
+
     }
 }

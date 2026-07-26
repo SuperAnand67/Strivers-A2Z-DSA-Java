@@ -5,22 +5,30 @@ import java.util.Scanner;
 
 public class Arrays_DSA {
 
-    public static void printArray(int[] arr){
+    private static void printArray(int[] arr){
 
         System.out.print("Array : ");
         for (int i : arr) System.out.print(i + " ");
         System.out.println();
     }
 
-    public static void printArray(int[] arr, String name){
+    private static void printArray(int[] arr, String name){
 
         System.out.print(name + " : ");
         for (int i : arr) System.out.print(i + " ");
         System.out.println();
     }
 
+    private static void printMatrix(int[][] matrix){
+        int r = matrix.length;
 
-    public static int[] arrayCreate(int n,Scanner sc){
+        System.out.println("Matrix");
+        for (int i = 0; i < r; i++) {
+            System.out.println(Arrays.toString(matrix[i]));
+        }
+    }
+
+    private static int[] arrayCreate(int n,Scanner sc){
         int[] arr = new int[n];
 
         for (int i = 0; i < arr.length; i++) {
@@ -30,6 +38,18 @@ public class Arrays_DSA {
         System.out.println("Array : " + Arrays.toString(arr));
 
         return arr;
+    }
+
+    private static int[][] matrixCreate(int n, int m, Scanner sc){
+        int[][] matrix = new int[n][m];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                matrix[i][j] = sc.nextInt();
+            }
+        }
+
+        return matrix;
     }
 
     public static void main(String[] args) {
@@ -212,6 +232,27 @@ public class Arrays_DSA {
         System.out.println("Longest Consecutive Sequence Length : " + 
             sol.long_consec_seq(arr) + "\n"
         );
+
+        int i = sc.nextInt();
+        int j = sc.nextInt();
+
+        int[][] matrix = new int[i][j];
+        matrix = matrixCreate(i, j, sc);
+        printMatrix(matrix);
+        System.out.println("After Setting Zeros : ");
+        sol.set_zeros(matrix);
+        printMatrix(matrix);
+
+        int rc = sc.nextInt();
+        matrix = matrixCreate(rc, rc, sc);
+        printMatrix(matrix);
+        System.out.println("After Rotating by 90 degree : ");
+        var res_matrix = sol.rotate_matrix_90_brute(matrix);
+        printMatrix(res_matrix);
+
+        System.out.println("Transpose of Matrix : ");
+        sol.transpose_sq_matrix(matrix);
+        printMatrix(matrix);
 
         sc.close();
     }
