@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class Solutions{
+class Solutions_new{
     public int findLength(String s) {
         return s.length();
     }
@@ -39,7 +39,7 @@ public class Demo {
         System.out.println("HelloWorld!");
         Scanner sc = new Scanner(System.in);
 
-        Solutions soln =  new Solutions();
+        Solutions_new soln =  new Solutions_new();
 
         int num = sc.nextInt();
         String str = sc.next();
