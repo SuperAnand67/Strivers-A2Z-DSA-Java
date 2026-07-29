@@ -1169,6 +1169,8 @@ public class Array_Solutions{
 
     }
 
+    // TC -> O(n^2)
+    // SC -> O(n^2)
     public int[][] rotate_matrix_90_brute(int[][] matrix){
         if (matrix.length != matrix[0].length) 
             return null;
@@ -1185,14 +1187,19 @@ public class Array_Solutions{
         return result;
     }
 
+    // TC -> O(2 * n^2) -> O(n^2)
+    // SC -> O(1)
     public void rotate_matrix_90(int[][] matrix){
         if (matrix.length != matrix[0].length) 
             return;
 
         int n = matrix.length;
 
-        transpose_sq_matrix(matrix);
+        transpose_sq_matrix(matrix); // O(n^2)
 
+        for (int i = 0; i < n; i++) {   // O(n^2)
+            reverse(matrix[i]);         // O(n)
+        }
 
     }
 }

@@ -245,14 +245,18 @@ public class Arrays_DSA {
 
         int rc = sc.nextInt();
         matrix = matrixCreate(rc, rc, sc);
-        printMatrix(matrix);
-        System.out.println("After Rotating by 90 degree : ");
-        var res_matrix = sol.rotate_matrix_90_brute(matrix);
-        printMatrix(res_matrix);
 
         System.out.println("Transpose of Matrix : ");
         sol.transpose_sq_matrix(matrix);
         printMatrix(matrix);
+        System.out.println();
+
+        sol.transpose_sq_matrix(matrix);
+        printMatrix(matrix);
+        System.out.println("After Rotating by 90 degree : ");
+        sol.rotate_matrix_90(matrix);
+        printMatrix(matrix);
+        System.out.println();
 
         sc.close();
     }
