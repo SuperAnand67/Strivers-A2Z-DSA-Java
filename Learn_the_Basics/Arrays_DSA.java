@@ -258,6 +258,11 @@ public class Arrays_DSA {
         printMatrix(matrix);
         System.out.println();
 
+        matrix = matrixCreate(5, 6, sc);
+        printMatrix(matrix);
+        System.out.println("Spiral Matrix : ");
+        sol.spiral_matrix(matrix);
+
         sc.close();
     }
 }
