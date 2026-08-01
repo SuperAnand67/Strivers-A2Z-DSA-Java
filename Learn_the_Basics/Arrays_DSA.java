@@ -262,6 +262,15 @@ public class Arrays_DSA {
         printMatrix(matrix);
         System.out.println("Spiral Matrix : ");
         sol.spiral_matrix(matrix);
+        System.out.println();
+
+        arr = arrayCreate(n + 3, sc);
+        k = sc.nextInt();
+        int count = sol.count_subarray_sumK(arr, k);
+        System.out.println("The No. of SubArrays with Sum " 
+            + k + " is " + count
+        );
+
 
         sc.close();
     }

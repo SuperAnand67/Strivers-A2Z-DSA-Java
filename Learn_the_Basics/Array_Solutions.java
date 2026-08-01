@@ -1239,4 +1239,46 @@ public class Array_Solutions{
         }
         
     }
+
+    // Returns No. of SubArrays with Sum k
+    // TC -> O(n^2)
+    // SC -> O(1)
+    public int count_subarray_sumK_better(int[] arr, int k){
+        int n = arr.length;
+        int count = 0;
+
+        for (int i = 0; i < n; i++) {
+            int sum = 0;
+            for (int j = i; j < n; j++) {
+                sum += arr[j];
+                if(sum == k) count++;
+            }
+        }
+
+        return count;
+    }
+
+    // TC -> O(n)
+    // Sc -> O(n)
+    public int count_subarray_sumK(int[] arr, int k){
+        //int n = arr.length;
+        var map = new HashMap<Integer, Integer>();
+        map.put(0, 1); // Map < prefixSum, count >
+        int count = 0;
+        int prefixSum = 0;
+
+        for(int num : arr) {
+            prefixSum += num;
+            int x = prefixSum - k;
+
+            // if (map.containsKey(x))
+            //     count += map.get(x);
+            count += map.getOrDefault(x, 0);
+
+            map.merge(prefixSum, 1, Integer::sum);
+            
+        }
+
+        return count;
+    }
 }
