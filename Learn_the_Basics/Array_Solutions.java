@@ -1275,7 +1275,9 @@ public class Array_Solutions{
             //     count += map.get(x);
             count += map.getOrDefault(x, 0);
 
-            map.merge(prefixSum, 1, Integer::sum);
+            map.put(prefixSum, 
+                map.getOrDefault(prefixSum, 0) + 1);
+            //map.merge(prefixSum, 1, Integer::sum);
             
         }
 
