@@ -1283,4 +1283,8 @@ public class Array_Solutions{
 
         return count;
     }
+
+    public int pascalTriangleVal(int r, int c){
+        
+    }
 }
