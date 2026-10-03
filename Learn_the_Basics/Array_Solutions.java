@@ -97,6 +97,25 @@ public class Array_Solutions{
         }
     }
 
+    private static int fact(int n){
+        if(n <= 0)
+            return 1;
+
+        return n * fact(n-1);
+
+    }
+
+    private static int factO(int n){
+
+        int fact = 1;
+
+        for (int i = 2; i <= n; i++) {
+            fact = fact * i;
+        }
+
+        return fact;
+    }
+
     private static void reverse(int[] arr){
         int i = 0;
         int j = arr.length - 1;
@@ -1284,7 +1303,18 @@ public class Array_Solutions{
         return count;
     }
 
-    public int pascalTriangleVal(int r, int c){
-        
+    public int pascalTriangle1(int r, int c){
+        int res = 1;
+
+        r = r-1;
+        c = c-1;
+
+        for(int i = 0; i < c; i++){
+            res *= (r-i);
+            res /= (i+1);
+        }
+
+        return res;
     }
+    
 }
