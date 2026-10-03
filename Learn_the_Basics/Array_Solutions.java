@@ -1303,18 +1303,39 @@ public class Array_Solutions{
         return count;
     }
 
-    public int pascalTriangle1(int r, int c){
+    private static int nCr(int n, int r){
         int res = 1;
 
-        r = r-1;
-        c = c-1;
-
-        for(int i = 0; i < c; i++){
-            res *= (r-i);
+        for (int i = 0; i < r; i++) {
+            res *= (n-i);
             res /= (i+1);
         }
 
         return res;
+    }
+
+    // TC -> O(n)
+    // SC -> O(1)
+    public int pascalTriangle1(int r, int c){
+
+        if(r == c | c == 0) return 1;
+
+        int res = nCr(r-1, c-1);
+
+        return res;
+    }
+
+    public void pascalTrinagle2_Brute(int n){
+
+        for (int i = 0; i < n; i++) {
+            IO.print(nCr(n-1, i) + " ");
+        }
+
+        System.out.println();
+    }
+
+    public void pascalTriangle2(int n){
+
     }
     
 }

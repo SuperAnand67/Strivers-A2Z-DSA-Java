@@ -142,3 +142,6 @@ Spiral Matrix :
 Array : [1, 2, 3, -3, 1, 1, 1, 4, 2, -3]
 The No. of SubArrays with Sum 3 is 8
 The Value of Pascal Triangle at row 6 and col 4 is 10.
+
+The 6 th row in pascal's triangle :
+1 5 10 10 5 1 

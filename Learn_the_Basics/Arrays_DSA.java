@@ -276,6 +276,11 @@ public class Arrays_DSA {
         System.out.printf("The Value of Pascal Triangle at row %d and col %d is %d.\n",
             r,c,sol.pascalTriangle1(r, c)
         );
+        System.out.println();
+
+        n = sc.nextInt();
+        System.out.printf("The %d th row in pascal's triangle :\n",n);
+        sol.pascalTrinagle2_Brute(n);
 
         sc.close();
     }
