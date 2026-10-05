@@ -280,7 +280,8 @@ public class Arrays_DSA {
 
         n = sc.nextInt();
         System.out.printf("The %d th row in pascal's triangle :\n",n);
-        sol.pascalTrinagle2_Brute(n);
+        sol.pascalTriangle2(n);
+        //printArray(sol.pascalTriangle2(n));
 
         sc.close();
     }

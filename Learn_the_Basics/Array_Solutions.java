@@ -1334,8 +1334,46 @@ public class Array_Solutions{
         System.out.println();
     }
 
-    public void pascalTriangle2(int n){
+    // TC -> O(n/2 x r)
+    // SC -> O(n)
+    public int[] pascalTriangle2_MyVersion(int n){
+        int[] res = new int[n];
 
+        for (int i = 0; i < (n/2) + 1; i++) {
+            res[i] = nCr(n-1,i);
+        }
+
+        int i = 0;
+        int j = n-1;
+
+        while(i < j){
+            res[j] = res[i];
+            i++;
+            j--;
+        }
+
+        return res;
+    }
+
+    // TC -> O(n)
+    // SC -> O(1)
+    public void pascalTriangle2(int n){
+        int res = 1;
+
+        System.out.print(res + " ");
+
+        for(int i = 1; i < n; i++){
+            res *= (n-i);
+            res /= i;
+
+            System.out.print(res + " ");
+        }
+
+        System.out.println();
+    }
+
+    public void pascalTriangle3(int n){
+        
     }
     
 }
