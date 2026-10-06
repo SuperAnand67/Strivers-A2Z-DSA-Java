@@ -1372,8 +1372,35 @@ public class Array_Solutions{
         System.out.println();
     }
 
+    // TC -> O(n^2)
+    // SC -> O(1)
     public void pascalTriangle3(int n){
-        
+        System.out.println("1");
+
+        for (int i = 2; i <= n; i++) {
+            pascalTriangle2(i);
+        }
+
+        System.out.println();
+    }
+
+    public int majority_element2(int[] arr){
+        int n = arr.length;
+
+        for (int i = 0; i < arr.length; i++) {
+            int count = 0;
+
+            for (int j = 0; j < arr.length; j++) {
+                if(i == j) continue;
+
+                if(arr[i] == arr[j]) count++;
+            }
+
+            if(count > (n/3))
+                return arr[i];
+        }
+
+        return -1;
     }
     
 }

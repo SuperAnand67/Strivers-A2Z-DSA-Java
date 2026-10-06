@@ -283,6 +283,15 @@ public class Arrays_DSA {
         sol.pascalTriangle2(n);
         //printArray(sol.pascalTriangle2(n));
 
+        System.out.println("The Pascal's Triangle : ");
+        sol.pascalTriangle3(n);
+
+        n = sc.nextInt();
+        arr = arrayCreate(n, sc);
+        System.out.println("Majority Element (> n/3) : " + 
+            sol.majority_element2(arr)
+        );
+
         sc.close();
     }
 }
