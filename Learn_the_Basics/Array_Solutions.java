@@ -1396,7 +1396,7 @@ public class Array_Solutions{
                 if(arr[i] == arr[j]) count++;
             }
 
-            if(count > (n/3))
+            if(count > Math.floor(n/3))
                 return arr[i];
         }
 
