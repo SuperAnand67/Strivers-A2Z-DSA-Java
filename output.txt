@@ -154,4 +154,4 @@ The Pascal's Triangle :
 1 5 10 10 5 1 
 
 Array : [1, 1, 1, 3, 3, 2, 2, 2]
-Majority Element (> n/3) : -1
+Majority Element (> n/3) : [1, 2]

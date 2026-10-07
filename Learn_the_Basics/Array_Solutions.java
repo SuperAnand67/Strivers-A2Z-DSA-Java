@@ -1384,23 +1384,28 @@ public class Array_Solutions{
         System.out.println();
     }
 
-    public int majority_element2(int[] arr){
+    public List<Integer> majority_element2_better(int[] arr){
         int n = arr.length;
+        var map = new HashMap<Integer, Integer>();
+        var ans = new ArrayList<Integer>();
 
-        for (int i = 0; i < arr.length; i++) {
-            int count = 0;
-
-            for (int j = 0; j < arr.length; j++) {
-                if(i == j) continue;
-
-                if(arr[i] == arr[j]) count++;
-            }
-
-            if(count > Math.floor(n/3))
-                return arr[i];
+        for (int i : arr) {
+            map.put(
+                i,
+                map.getOrDefault(i,0) + 1
+            );
         }
 
-        return -1;
+        for (Map.Entry<Integer, Integer> val : map.entrySet()) {
+            if (val.getValue() > Math.floor(n/3)) {
+                ans.add(val.getKey());
+            }
+
+            if(ans.size() == 2)
+                break;
+        }
+
+        return ans;
     }
     
 }

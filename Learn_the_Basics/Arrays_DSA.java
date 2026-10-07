@@ -289,7 +289,7 @@ public class Arrays_DSA {
         n = sc.nextInt();
         arr = arrayCreate(n, sc);
         System.out.println("Majority Element (> n/3) : " + 
-            sol.majority_element2(arr)
+            sol.majority_element2_better(arr).toString()
         );
 
         sc.close();
